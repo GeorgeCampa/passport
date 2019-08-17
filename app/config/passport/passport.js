@@ -35,11 +35,7 @@ module.exports = function (passport, user) {
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
             };
 
-            User.findOne({
-                where: {
-                    email: email
-                }
-            }).then(function (user) {
+            User.findOne({ where: { email: email } }).then(function (user) {
 
                 if (user) {
                     return done(null, false, { message: 'That email is already taken' });
@@ -48,12 +44,12 @@ module.exports = function (passport, user) {
                 else {
                     var userPassword = generateHash(password);
                     var data =
-                    {
-                        email: email,
-                        password: userPassword,
-                        firstname: req.body.firstname,
-                        lastname: req.body.lastname
-                    };
+                        {
+                            email: email,
+                            password: userPassword,
+                            firstname: req.body.firstname,
+                            lastname: req.body.lastname
+                        };
 
                     User.create(data).then(function (newUser, created) {
                         if (!newUser) {
@@ -69,7 +65,7 @@ module.exports = function (passport, user) {
         }
     ));
 
-    //LOCAL SIGNIN
+    //LOCAL 
     passport.use('local-signin', new LocalStrategy(
 
         {
@@ -98,7 +94,9 @@ module.exports = function (passport, user) {
                 return done(null, userinfo);
 
             }).catch(function (err) {
+
                 console.log("Error:", err);
+
                 return done(null, false, { message: 'Something went wrong with your Signin' });
             });
         }

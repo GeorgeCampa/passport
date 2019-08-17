@@ -1,7 +1,7 @@
 var bCrypt = require('bcrypt-nodejs');
 
 module.exports = function (passport, user) {
-
+    console.log(user)
     var User = user;
     var LocalStrategy = require('passport-local').Strategy;
 
@@ -76,11 +76,10 @@ module.exports = function (passport, user) {
         },
 
         function (req, email, password, done) {
-            var User = user;
             var isValidPassword = function (userpass, password) {
                 return bCrypt.compareSync(password, userpass);
             }
-
+            console.log(user);
             User.findOne({ where: { email: email } }).then(function (user) {
                 if (!user) {
                     return done(null, false, { message: 'Email does not exist' });

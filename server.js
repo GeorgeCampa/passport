@@ -29,17 +29,17 @@ var authRoute = require('./app/routes/auth.js')(app, passport);
 
 //For Handlebars
 app.set('views', './app/views')
-app.engine('hbs', exphbs({
-    extname: '.hbs'
+app.engine('handlebars', exphbs({
+    extname: '.handlebars'
 }));
-app.set('view engine', '.hbs');
+app.set('view engine', '.handlebars');
 
 app.get('/', function (req, res) {
     res.send('Welcome to Passport with Sequelize');
 });
 
 //load passport strategy
-require('./app/config/passport/passport.js')(passport, models.user);
+require('./app/config/passport/passport.js')(passport, models.User);
 
 //Sync Database
 models.sequelize.sync().then(function () {
@@ -49,7 +49,7 @@ models.sequelize.sync().then(function () {
 });
 
 //Listening APP at port 5000
-app.listen(5000, function (err) {
+app.listen(3000, function (err) {
     if (!err)
         console.log("Site is live");
     else console.log(err)

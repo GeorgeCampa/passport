@@ -12,5 +12,5 @@ Available pages:
 Log in on http://localhost:3000
 Sign up on http://localhost:3000/signup
 Sign in on http://localhost:3000/signin
-Dashboard [requires to be logged in] on http://localhost:3000/dashboard
-Log out on http://localhost:3000/logout
+Dashboard [requires to be logged logoutin] on http://localhost:3000/dashboard
+Log out on http://localhost:3000/
